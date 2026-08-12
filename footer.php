@@ -1,7 +1,7 @@
                 </div>
             </div>
                 <!-- Footer-->
-                <footer class="py-2 bg-dark fixed-bottom">
+                <footer class="py-2 fixed-bottom"  style= "background-color:#081d41;">
                     <div class="container"><p class="m-0 text-center text-white">S.O.Study &copy; <?php echo date("Y"); ?> - Sistema Web desenvolvido por Isabele Da Silva e Isabele Jardins </p></div>
                 </footer>
                 <!-- Bootstrap core JS-->
