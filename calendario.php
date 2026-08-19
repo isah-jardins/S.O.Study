@@ -42,6 +42,8 @@ if ($dataSelecionada) {
     }
 }
 ?>
+
+<?php include "header.php"?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -51,22 +53,11 @@ if ($dataSelecionada) {
 
         <title>Calendário - S.O.Study</title>
 
+        <link rel="stylesheet" href="css/geral.css">
         <link rel="stylesheet" href="css/calendario.css">
     </head>
 
     <body>
-
-        <header class="cabecalho">
-
-            <a href="index.php"><h1>S.O.Study</h1></a>
-
-            <nav>
-                <a href="index.php">início</a>
-                <a href="#">favoritos</a>
-                <a href="editais.php">Editais</a>
-            </nav>
-
-        </header>
 
         <main>
 

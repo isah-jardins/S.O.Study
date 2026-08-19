@@ -1,0 +1,734 @@
+/* ========================================
+   CONFIGURAÇÕES DO CALENDÁRIO
+======================================== */
+
+.titulo-calendario {
+
+    color: white;
+
+    text-align: center;
+
+    font-size: 40px;
+
+    margin: 30px 0 45px;
+
+}
+
+
+/* ========================================
+   ÁREA PRINCIPAL
+======================================== */
+
+.area-calendario {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: stretch;
+
+    gap: 120px;
+
+    padding: 0 20px 50px;
+
+}
+
+
+/* ========================================
+   CALENDÁRIO
+======================================== */
+
+.calendario {
+
+    width: 620px;
+
+    background-color: white;
+
+    padding: 20px;
+
+    border-radius: 15px;
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+
+}
+
+
+/* ========================================
+   NAVEGAÇÃO DO MÊS
+======================================== */
+
+.navegacao {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 20px;
+
+}
+
+
+.navegacao a {
+
+    color: #d50063;
+
+    text-decoration: none;
+
+    font-size: 30px;
+
+    font-weight: bold;
+
+    transition: 0.2s;
+
+}
+
+
+.navegacao a:hover {
+
+    transform: scale(1.2);
+
+}
+
+
+.navegacao h3 {
+
+    color: #09244d;
+
+    font-size: 24px;
+
+    margin: 0;
+
+}
+
+
+/* ========================================
+   DIAS DA SEMANA
+======================================== */
+
+.dias-semana {
+
+    display: grid;
+
+    grid-template-columns: repeat(7, 1fr);
+
+    gap: 8px;
+
+    margin-bottom: 8px;
+
+}
+
+
+.dias-semana div {
+
+    text-align: center;
+
+    font-weight: bold;
+
+    color: #09244d;
+
+    padding: 8px 0;
+
+}
+
+
+/* ========================================
+   GRADE DOS DIAS
+======================================== */
+
+.dias {
+
+    display: grid;
+
+    grid-template-columns: repeat(7, 1fr);
+
+    gap: 8px;
+
+}
+
+
+/* ========================================
+   CADA DIA
+======================================== */
+
+.dia {
+
+    height: 80px;
+
+    background-color: #f5e7e5;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-decoration: none;
+
+    color: #d50063;
+
+    font-size: 32px;
+
+    font-weight: bold;
+
+    border-radius: 5px;
+
+    transition: 0.2s;
+
+    cursor: pointer;
+
+}
+
+
+.dia:hover {
+
+    background-color: #d50063;
+
+    color: white;
+
+    transform: scale(1.03);
+
+}
+
+
+/* ========================================
+   DIA SELECIONADO
+======================================== */
+
+.dia.selecionado {
+
+    background-color: #09244d;
+
+    color: white;
+
+}
+
+
+/* ========================================
+   INDICADOR DE EVENTO
+======================================== */
+
+.dia small {
+
+    font-size: 22px;
+
+    line-height: 10px;
+
+}
+
+
+/* ========================================
+   DIA COM EVENTO
+======================================== */
+
+.dia.possui-evento {
+
+    border: 3px solid #d50063;
+
+}
+
+
+/* ========================================
+   DIAS VAZIOS
+======================================== */
+
+.dia.vazio {
+
+    background-color: transparent;
+
+    pointer-events: none;
+
+}
+
+
+/* ========================================
+   PAINEL LATERAL
+======================================== */
+
+.painel {
+
+    width: 450px;
+
+    min-height: 500px;
+
+    background-color: #09244d;
+
+    border-radius: 35px;
+
+    padding: 60px;
+
+    color: white;
+
+}
+
+
+.painel h2 {
+
+    font-size: 32px;
+
+    margin: 0 0 30px;
+
+}
+
+
+.painel p {
+
+    font-size: 18px;
+
+    line-height: 1.5;
+
+}
+
+
+/* ========================================
+   EVENTOS
+======================================== */
+
+.evento {
+
+    background-color: white;
+
+    color: #09244d;
+
+    border-radius: 15px;
+
+    padding: 20px;
+
+    margin-bottom: 15px;
+
+}
+
+
+.evento h3 {
+
+    color: #d50063;
+
+    margin: 0 0 10px;
+
+}
+
+
+.evento p {
+
+    color: #09244d;
+
+    margin-bottom: 10px;
+
+}
+
+
+.evento span {
+
+    display: block;
+
+    margin-top: 10px;
+
+    font-weight: bold;
+
+}
+
+
+/* ========================================
+   EVENTO CONCLUÍDO
+======================================== */
+
+.evento.concluido {
+
+    opacity: 0.65;
+
+}
+
+
+.evento.concluido h3,
+
+.evento.concluido p {
+
+    text-decoration: line-through;
+
+}
+
+
+.evento.concluido h3 {
+
+    color: #5b5b5b;
+
+}
+
+
+/* ========================================
+   ÁREA DOS BOTÕES DO EVENTO
+======================================== */
+
+.acoes-evento {
+
+    display: flex;
+
+    gap: 8px;
+
+    margin-top: 15px;
+
+}
+
+
+/* ========================================
+   BOTÕES DAS AÇÕES
+======================================== */
+
+.acoes-evento a {
+
+    flex: 1;
+
+    text-align: center;
+
+    padding: 8px 5px;
+
+    border-radius: 7px;
+
+    text-decoration: none;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    transition: 0.2s;
+
+}
+
+
+/* ========================================
+   BOTÃO CONCLUIR
+======================================== */
+
+.botao-concluir {
+
+    background-color: #5bb1b0;
+
+    color: white;
+
+}
+
+
+.botao-concluir:hover {
+
+    opacity: 0.8;
+
+}
+
+
+/* ========================================
+   BOTÃO DESFAZER
+======================================== */
+
+.botao-desfazer {
+
+    background-color: #ddd;
+
+    color: #09244d;
+
+}
+
+
+.botao-desfazer:hover {
+
+    background-color: #cfcfcf;
+
+}
+
+
+/* ========================================
+   BOTÃO REMOVER
+======================================== */
+
+.botao-remover {
+
+    background-color: #d50063;
+
+    color: white;
+
+}
+
+
+.botao-remover:hover {
+
+    opacity: 0.8;
+
+}
+
+
+/* ========================================
+   BOTÃO ADICIONAR EVENTO
+======================================== */
+
+.botao {
+
+    display: block;
+
+    background-color: #d50063;
+
+    color: white;
+
+    text-align: center;
+
+    text-decoration: none;
+
+    padding: 15px;
+
+    border-radius: 10px;
+
+    margin-top: 25px;
+
+    font-weight: bold;
+
+    transition: 0.2s;
+
+}
+
+
+.botao:hover {
+
+    background-color: #b80054;
+
+    color: white;
+
+}
+
+
+/* ========================================
+   MENSAGEM SEM EVENTOS
+======================================== */
+
+.sem-eventos {
+
+    margin-bottom: 20px;
+
+    color: white;
+
+}
+
+
+/* ========================================
+   FORMULÁRIO DE ADICIONAR EVENTO
+======================================== */
+
+.formulario {
+
+    width: 500px;
+
+    margin: 80px auto;
+
+    background-color: white;
+
+    padding: 40px;
+
+    border-radius: 20px;
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+
+}
+
+
+.formulario h1 {
+
+    color: #09244d;
+
+    margin-bottom: 30px;
+
+}
+
+
+.formulario label {
+
+    display: block;
+
+    margin-top: 15px;
+
+    margin-bottom: 5px;
+
+    font-weight: bold;
+
+    color: #09244d;
+
+}
+
+
+.formulario input,
+
+.formulario textarea {
+
+    width: 100%;
+
+    padding: 12px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 8px;
+
+    font-size: 16px;
+
+    font-family: Arial, sans-serif;
+
+}
+
+
+.formulario input:focus,
+
+.formulario textarea:focus {
+
+    outline: none;
+
+    border-color: #09244d;
+
+}
+
+
+.formulario textarea {
+
+    height: 100px;
+
+    resize: none;
+
+}
+
+
+.formulario button {
+
+    width: 100%;
+
+    margin-top: 25px;
+
+    padding: 15px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background-color: #d50063;
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+
+}
+
+
+.formulario button:hover {
+
+    background-color: #b80054;
+
+}
+
+
+/* ========================================
+   RESPONSIVIDADE
+======================================== */
+
+@media (max-width: 1200px) {
+
+    .area-calendario {
+
+        gap: 40px;
+
+    }
+
+}
+
+
+@media (max-width: 1000px) {
+
+    .area-calendario {
+
+        flex-direction: column;
+
+        align-items: center;
+
+    }
+
+
+    .calendario {
+
+        width: 90%;
+
+    }
+
+
+    .painel {
+
+        width: 90%;
+
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .titulo-calendario {
+
+        font-size: 30px;
+
+        margin: 25px 0 30px;
+
+    }
+
+
+    .area-calendario {
+
+        padding: 0 10px 40px;
+
+    }
+
+
+    .calendario {
+
+        width: 95%;
+
+        padding: 10px;
+
+    }
+
+
+    .dia {
+
+        height: 55px;
+
+        font-size: 22px;
+
+    }
+
+
+    .dia small {
+
+        font-size: 16px;
+
+    }
+
+
+    .painel {
+
+        width: 95%;
+
+        padding: 30px;
+
+    }
+
+
+    .formulario {
+
+        width: 90%;
+
+        margin: 40px auto;
+
+        padding: 25px;
+
+    }
+
+}

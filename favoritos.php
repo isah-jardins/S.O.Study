@@ -1,92 +1,249 @@
 <?php
+
 session_start();
+
 include "conexaoBD.php";
-include "header.php";
 
 if (!isset($_SESSION['idUsuario'])) {
     header("Location: formLogin.php");
     exit();
 }
+
 $idUsuario = $_SESSION['idUsuario'];
 
-$sql = "SELECT v.idVestibular,
-               v.nomeVestibular,
-               v.descricao,
-               v.imagem
+
+// ==========================================
+// BUSCA OS VESTIBULARES FAVORITADOS
+// ==========================================
+
+$sql = "SELECT
+            v.idVestibular,
+            v.nomeVestibular,
+            v.descricaoVestibular,
+            v.imagemVestibular,
+            v.dataVestibular
         FROM favoritos f
         INNER JOIN vestibulares v
             ON f.idVestibular = v.idVestibular
-        WHERE f.idUsuario = '$idUsuario'";
+        WHERE f.idUsuario = '$idUsuario'
+        ORDER BY v.idVestibular ASC";
+
 $resultado = mysqli_query($conn, $sql);
+
 ?>
-<!DOCTYPE html>
-<html lang="pt-BR">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<?php include "header.php"; ?>
 
-    <title>Favoritos - S.O.Study</title>
+<link rel="stylesheet" href="css/favoritos.css">
 
-    <link rel="stylesheet" href="css/ideia.css">
-</head>
 
-<body>
-    <div class="container">
-        <h1 class="titulo-favoritos">⭐ Favoritos</h1>
-        <?php if (mysqli_num_rows($resultado) == 0) { ?>
+<div class="container">
 
-            <div class="sem-favoritos">
-                <h2>Você ainda não possui favoritos.</h2>
-                <p>Favorite um vestibular para ele aparecer aqui! ⭐</p>
-            </div>
+    <!-- ==========================================
+         TÍTULO
+         ========================================== -->
 
-        <?php } else { ?>
-            <?php while ($vestibular = mysqli_fetch_assoc($resultado)) { ?>
-                <div class="card-favorito">
+    <h1 class="titulo-favoritos">
+        ⭐ Favoritos
+    </h1>
 
-                    <h2>
-                        <?= htmlspecialchars($vestibular['nomeVestibular']); ?>
-                    </h2>
 
-                    <div class="conteudo-favorito">
-                        <div class="editais-favorito">
-                            <h3>Editais</h3>
-                            <?php
+    <!-- ==========================================
+         CALENDÁRIO ÚNICO
+         ========================================== -->
 
-                            $idVestibular = $vestibular['idVestibular'];
-                            $sqlEditais = "SELECT idEdital,
-                                                nomeEdital,
-                                                linkEdital
-                                        FROM editais
-                                        WHERE idVestibular = '$idVestibular'";
-                            $resultadoEditais = mysqli_query($conn, $sqlEditais);
-                            ?>
+    <div class="calendario-favoritos">
 
-                            <?php if (mysqli_num_rows($resultadoEditais) > 0) { ?>
-                                <?php while ($edital = mysqli_fetch_assoc($resultadoEditais)) { ?>
-                                    
-                                    <a href="<?= htmlspecialchars($edital['linkEdital']); ?>"
-                                    target="_blank"
-                                    class="edital-favorito">
-                                        📄 <?= htmlspecialchars($edital['nomeEdital']); ?>
-                                    </a>
+        <a
+            href="calendario.php"
+            class="botao-calendario"
+        >
 
-                                <?php } ?>
-                            <?php } else { ?>
-                                <p>Nenhum edital cadastrado.</p>
-                            <?php } ?>
-                        </div>
+            <span class="icone-calendario">
+                📅
+            </span>
 
-                        <a href="calendario.php" class="calendario-favorito">
-                            <span class="icone-calendario">📅</span>
-                            <span>Acesse o calendário</span>
-                        </a>
+            <span>
+                Acesse o calendário
+            </span>
+
+        </a>
+
+    </div>
+
+
+    <!-- ==========================================
+         VERIFICA SE EXISTEM FAVORITOS
+         ========================================== -->
+
+    <?php if (mysqli_num_rows($resultado) == 0) { ?>
+
+        <div class="sem-favoritos">
+
+            <h2>
+                Você ainda não possui favoritos.
+            </h2>
+
+            <p>
+                Favorite um vestibular para ele aparecer aqui! ⭐
+            </p>
+
+        </div>
+
+
+    <?php } else { ?>
+
+
+        <!-- ==========================================
+             LISTA DE VESTIBULARES FAVORITADOS
+             ========================================== -->
+
+        <?php while ($vestibular = mysqli_fetch_assoc($resultado)) { ?>
+
+            <div class="card-favorito">
+
+
+                <!-- NOME -->
+
+                <h2>
+                    <?= htmlspecialchars(
+                        $vestibular['nomeVestibular']
+                    ); ?>
+                </h2>
+
+
+                <!-- IMAGEM -->
+
+                <?php if (!empty($vestibular['imagemVestibular'])) { ?>
+
+                    <img
+                        src="<?= htmlspecialchars(
+                            $vestibular['imagemVestibular']
+                        ); ?>"
+                        alt="<?= htmlspecialchars(
+                            $vestibular['nomeVestibular']
+                        ); ?>"
+                        class="imagem-favorito"
+                    >
+
+                <?php } ?>
+
+
+                <!-- DATA -->
+
+                <?php if (!empty($vestibular['dataVestibular'])) { ?>
+
+                    <div class="data-favorito">
+
+                        <?= htmlspecialchars(
+                            $vestibular['dataVestibular']
+                        ); ?>
 
                     </div>
+
+                <?php } ?>
+
+
+                <!-- DESCRIÇÃO -->
+
+                <?php if (!empty($vestibular['descricaoVestibular'])) { ?>
+
+                    <p class="descricao-favorito">
+
+                        <?= htmlspecialchars(
+                            $vestibular['descricaoVestibular']
+                        ); ?>
+
+                    </p>
+
+                <?php } ?>
+
+
+                <!-- ==========================================
+                     EDITAIS
+                     ========================================== -->
+
+                <div class="editais-favorito">
+
+                    <h3>
+                        📄 Editais
+                    </h3>
+
+
+                    <?php
+
+                    $idVestibular = $vestibular['idVestibular'];
+
+                    $sqlEditais = "SELECT
+                                        idEdital,
+                                        nomeEdital,
+                                        linkEdital
+                                   FROM editais
+                                   WHERE idVestibular = '$idVestibular'
+                                   ORDER BY idEdital ASC";
+
+                    $resultadoEditais = mysqli_query(
+                        $conn,
+                        $sqlEditais
+                    );
+
+                    ?>
+
+
+                    <?php if (mysqli_num_rows($resultadoEditais) > 0) { ?>
+
+
+                        <?php while ($edital = mysqli_fetch_assoc($resultadoEditais)) { ?>
+
+                            <a
+                                href="<?= htmlspecialchars(
+                                    $edital['linkEdital']
+                                ); ?>"
+                                target="_blank"
+                                class="edital-favorito"
+                            >
+
+                                📄
+                                <?= htmlspecialchars(
+                                    $edital['nomeEdital']
+                                ); ?>
+
+                            </a>
+
+                        <?php } ?>
+
+
+                    <?php } else { ?>
+
+                        <p>
+                            Nenhum edital cadastrado para este vestibular.
+                        </p>
+
+                    <?php } ?>
+
+
                 </div>
-            <?php } ?>
+
+
+                <!-- ==========================================
+                     BOTÃO DE DETALHES
+                     ========================================== -->
+
+                <a
+                    href="vestibular.php?idVestibular=<?= $idVestibular; ?>"
+                    class="botao-detalhes"
+                >
+                    Ver detalhes →
+                </a>
+
+
+            </div>
+
         <?php } ?>
-    </div>
-</body>
+
+    <?php } ?>
+
+</div>
+
+
 <?php include "footer.php"; ?>
