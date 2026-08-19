@@ -11,7 +11,7 @@
         $idUsuario    = $_SESSION['idUsuario'];
         $nomeUsuario  = $_SESSION['nomeUsuario'];
         $emailUsuario = $_SESSION['emailUsuario'];
-
+        
         $nomeCompleto = explode(' ', $nomeUsuario); //Usa a função explode para fragmentar o nome do usuário
         $primeiroNome = $nomeCompleto[0]; //Armazena na primeira posição do array o primeiro fragmento do nome
     }
@@ -24,6 +24,7 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>S.O.Study</title>
+
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Core theme CSS (includes Bootstrap)-->
@@ -38,7 +39,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-1">
                         <li class="nav-item"><a class="nav-link" href="index.php">Início</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">Favoritos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="favoritos.php">Favoritos</a></li>
                     </ul>
                     <ul class="navbar-nav mb2 mb-lg-0 ms-lg-2">
                         <?php

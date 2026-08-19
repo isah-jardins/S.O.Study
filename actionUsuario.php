@@ -1,10 +1,11 @@
+
 <?php include "header.php" ?>
 
     <?php
         //Verifica se o método de envio das informações do form é "POST"
         if($_SERVER["REQUEST_METHOD"] == "POST"){
             //Cria variáveis para armazenar as informações recebidas do array $_POST
-            $nomeUsuario = $emailUsuario = $senha = $confirmarsenha = "";
+            $nomeUsuario = $emailUsuario = $senhaUsuario = $confirmarsenha = "";
 
             //Variável booleana para controle de erros de preenchimento
             $erroPreenchimento = false;
@@ -40,14 +41,14 @@
 
             //Validação do campo senha
             //Utiliza a função empty() para verificar se o campo está vazio
-            if(empty($_POST["senha"])){
+            if(empty($_POST["senhaUsuario"])){
                 echo "<div class='alert alert-warning text-center'>O campo <strong>SENHA</strong> é obrigatório!</div>";
                 $erroPreenchimento = true;
             }
             else{
                 //Se o $_POST["senha"] não estiver vazio, é filtrado e armazenado na variável PHP
                 //Usa a função md5() para criptografar a senha do usuário
-                $senha = md5(filtrar_entrada($_POST["senha"]));
+                $senhaUsuario = md5(filtrar_entrada($_POST["senhaUsuario"]));
             }
 
             //Validação do campo confirmarsenha
@@ -61,17 +62,17 @@
                 $confirmarsenha = md5(filtrar_entrada($_POST["confirmarsenha"]));
 
                 //Compara se as senhas são diferentes
-                if($senha != $confirmarsenha){
+                if($senhaUsuario != $confirmarsenha){
                     echo "<div class='alert alert-warning text-center'>As <strong>SENHAS</strong> informadas não são iguais!</div>";
                     $erroPreenchimento = true;
                 }
             }
 
             //Verifica se não há erro de preenchimento
-            if(!$erroPreenchimento && !$erroUpload){
+            if(!$erroPreenchimento){
 
                 //Cria uma variável para armazenar a QUERY que realiza a inserção de dados na tabela Usuarios
-                $inserirUsuario = "INSERT INTO Usuario (nomeUsuario, emailUsuario, senha) VALUES ('$nomeUsuario', '$emailUsuario', '$senha')";
+                $inserirUsuario = "INSERT INTO usuario (nomeUsuario, emailUsuario, senhaUsuario) VALUES ('$nomeUsuario', '$emailUsuario', '$senhaUsuario')";
 
                 //Inclui o arquivo de conexão com o Banco de Dados
                 include "conexaoBD.php";
@@ -95,7 +96,7 @@
                                 </tr>
                                 <tr>
                                     <th>SENHA</th>
-                                    <td>$senha</td>
+                                    <td>$senhaUsuario</td>
                                 </tr>
                                 <tr>
                                     <th>CONFIRMAR SENHA</th>

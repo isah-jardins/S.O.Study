@@ -10,7 +10,7 @@
     $buscarLogin = "SELECT *
                     FROM usuario
                     WHERE emailUsuario = '$emailUsuario'
-                    AND senha = md5('$senhaUsuario')
+                    AND senhaUsuario = md5('$senhaUsuario')
                     ";
 
     $efetuarLogin = mysqli_query($conn, $buscarLogin); //Executa a QUERY

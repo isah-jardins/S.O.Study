@@ -31,14 +31,14 @@
             </div>
 
             <div class="form-floating mt-3 mb-3">
-                <input type="password" name="senha" id="senha" placeholder="Senha" class="form-control" minlength="3" maxlength="8">
-                <label for="senha">Senha</label>
+                <input type="password" name="senhaUsuario" id="senhaUsuario" placeholder="Senha" class="form-control" minlength="3" maxlength="8">
+                <label for="senhaUsuario">Senha</label>
                 <div class="valid-feedback"></div>
                 <div class="invalid-feedback"></div>
             </div>
 
             <div class="form-floating mt-3 mb-3">
-                <input type="password" name="confirmarsenha" id="confirmarsenha" placeholder="Confirme a Senha" class="form-control" minlength="3" maxlength="8">
+                <input type="password" name="confirmarsenha" id="confirmarSenha" placeholder="Confirme a Senha" class="form-control" minlength="3" maxlength="8">
                 <label for="confirmarsenha">Confirme a Senha</label>
                 <div class="valid-feedback"></div>
                 <div class="invalid-feedback"></div>
